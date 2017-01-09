@@ -1,11 +1,12 @@
-#ifndef __PERSISTANCE__
-#define __PERSISTANCE__
+#pragma once
 
 #include "constantes.h"
 
+/** TEMPLATE DE CLASSE **/
 template <typename C, typename V>
 class Persistence;
 
+/** SURCHARGE DE std::cout << Persistance **/
 template <typename C, typename V>
 ostream& operator<<(ostream& os, const shared_ptr<Persistence<C,V>>& persist);
 
@@ -22,27 +23,36 @@ public :
     ~Persistence();
 
     /** METHODES **/
-    //void ajouter(C cle, shared_ptr<V> valeur, shared_ptr<sf::RenderWindow> window);
+
+    /* Supprimer un element */
     void supprimer(C cle, shared_ptr<sf::RenderWindow> window);
+
+    /* Supprimer tout les elements de la persistance */
     void vider(shared_ptr<sf::RenderWindow> window);
 
     /** SURCHARGE OPERATEURS **/
-    shared_ptr<V>& operator[](const C &cle);
-    void operator()(const C &cle, const shared_ptr<V> &valeur, shared_ptr<sf::RenderWindow> &window);
-    void operator>>(shared_ptr<sf::RenderWindow> &window) const;
 
+    /* atteindre un element via une clé */
+    shared_ptr<V>& operator[](const C &cle);
+
+    /* inserer un couple clé-valeur */
+    void operator()(const C &cle, const shared_ptr<V> &valeur, shared_ptr<sf::RenderWindow> &window);
+
+    /* Afficher tout les objets de la persistance sur Window */
+    void operator>>(shared_ptr<sf::RenderWindow> &window) const;
 
     /** AFFICHAGE **/
     friend ostream& operator<< <>(ostream& os, const shared_ptr<Persistence>& persist);
 
     private :
+
+    /* Voir si un element existe, selon la clé */
     int existe(C cle);
 
 protected:
 
+    /* Utilisation de la classe std::map */
     map<C,shared_ptr<V>> data;
 
 };
-
-#endif // __PERSISTANCE__
 

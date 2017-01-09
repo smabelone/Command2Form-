@@ -87,7 +87,9 @@ ostream& operator<<(ostream& os, const shared_ptr<Persistence<C,V>>& persist)
         os << *(it->second);
     }
     os << "------------------------------------------------------------------------------------" << endl;
+    os << " ";
     os << persist->data.size();
     os << " element(s)" << endl;
+    os << "------------------------------------------------------------------------------------" << endl;
     return os;
 }

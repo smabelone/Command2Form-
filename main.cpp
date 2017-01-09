@@ -16,6 +16,9 @@ void config_window(const std::shared_ptr<sf::RenderWindow> window);
 /* Message de demarrage */
 void start();
 
+/* Message d'erreur */
+void error(string message);
+
 /* Message d'arret */
 void exit();
 
@@ -25,14 +28,14 @@ int main()
 {
 
     /* WINDOW */
-    const std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "", sf::Style::None);
+    const auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "", sf::Style::None);
     config_window(window);
 
     /* GERER LES EVENEMENTS DE LA FENETRE */
     std::thread handle(handle_events,window);
 
     /* PERSISTENCE */
-    std::shared_ptr<Persistence<string, Forme<int>>> disk = std::make_shared<Persistence<string, Forme<int>>>();
+    auto disk = std::make_shared<Persistence<string, Forme<int>>>();
 
     /* INTERPRETEUR */
     std::unique_ptr<Interpreteur<string,int>> interp = nullptr;
@@ -64,15 +67,11 @@ int main()
 
             if (message != EXIT_CMD)
             {
-                // Message d'erreur
-                SetColor(12);
-                cout << message << endl;
-                SetColor(15);
+                error(message); // Message d'erreur
             }
             else
             {
-                // Signal d'exit
-                exit();
+                exit(); // Signal d'exit
                 handle.join();
                 return 0;
             }
@@ -125,11 +124,11 @@ void handle_events(shared_ptr<sf::RenderWindow> window)
 
 void config_window(const std::shared_ptr<sf::RenderWindow> window)
 {
+    sf::Vector2i pos(WINDOW_POS_X,WINDOW_POS_Y);
     window->setActive(false);
     window->setFramerateLimit(FRAME_RATE_LIMIT);
     window->setMouseCursorVisible(false);
-    window->setVerticalSyncEnabled(false);
-    sf::Vector2i pos(WINDOW_POS_X,WINDOW_POS_Y);
+    window->setVerticalSyncEnabled(true);
     window->setPosition(pos);
     window->display();
 }
@@ -137,7 +136,16 @@ void config_window(const std::shared_ptr<sf::RenderWindow> window)
 void start()
 {
     SetColor(8);
+    cout << START_MSG_2 << endl;
     cout << START_MSG << endl;
+    cout << START_MSG_2 << endl;
+    SetColor(15);
+}
+
+void error(string message){
+    SetColor(12);
+    cout << message << endl;
+    SetColor(15);
 }
 
 void exit()

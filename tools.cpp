@@ -71,9 +71,22 @@ void debug(string text)
 {
     if (DEBUG != 0)
     {
-        SetColor(2);
+        SetColor(3);
         cout << text << endl << std::flush;
         SetColor(15);
     }
+}
+
+string sizeToString(size_t sz) {
+
+
+  stringstream ss;
+
+
+  ss << sz;
+
+
+  return ss.str();
+
 }
 

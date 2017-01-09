@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "tools.h"
 #include "rectangle.h"
+#include "Cercle.h"
+#include "Polygone.h"
 
 // test type
 template <typename G, typename H>
@@ -104,7 +106,7 @@ Forme<T>& Forme<T>::operator<<(const Couleur &couleur)
 template<typename T>
 void Forme<T>::operator>>(shared_ptr<sf::RenderWindow> &window)
 {
-    //"cette methode ne doit pas etre appelée"
+    //cout<<"cette methode ne doit pas etre appelée";
     cout << "Affichage de forme .." << endl;
 
 };
@@ -116,14 +118,58 @@ bool Forme<T>::operator<(Forme<T>& forme)
 
     T superficie1,superficie2;
 
-    if ( typetest<Rectangle<int>>(*this) )
+    if ( typetest<Rectangle<int>>(*this) && typetest<Rectangle<int>>(forme) )
     {
         superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
     }
 
-    if ( typetest<Rectangle<int>>(forme) )
+    if ( typetest<Cercle<int>>(*this) && typetest<Cercle<int>>(forme) )
     {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Rectangle<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
         superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Rectangle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
     }
 
     return superficie1 < superficie2;
@@ -136,14 +182,58 @@ bool Forme<T>::operator>(Forme<T>& forme)
 
     T superficie1,superficie2;
 
-    if ( typetest<Rectangle<int>>(*this) )
+    if ( typetest<Rectangle<int>>(*this) && typetest<Rectangle<int>>(forme) )
     {
         superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
     }
 
-    if ( typetest<Rectangle<int>>(forme) )
+    if ( typetest<Cercle<int>>(*this) && typetest<Cercle<int>>(forme) )
     {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Rectangle<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
         superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+      if ( typetest<Polygone<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Rectangle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
     }
 
     return superficie1 > superficie2;
@@ -155,14 +245,58 @@ bool Forme<T>::operator==(Forme<T>& forme)
     debug("Surcharge operateur ==");
     T superficie1, superficie2;
 
-    if ( typetest<Rectangle<int>>(*this) )
+    if ( typetest<Rectangle<int>>(*this) && typetest<Rectangle<int>>(forme) )
     {
         superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
     }
 
-    if ( typetest<Rectangle<int>>(forme) )
+    if ( typetest<Cercle<int>>(*this) && typetest<Cercle<int>>(forme) )
     {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Rectangle<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
         superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+      if ( typetest<Polygone<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Rectangle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Rectangle<int>&>(forme)).superficie();
+    }
+
+    if ( typetest<Polygone<int>>(*this) && typetest<Cercle<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Polygone<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Cercle<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Cercle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Cercle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
+    }
+
+     if ( typetest<Rectangle<int>>(*this) && typetest<Polygone<int>>(forme) )
+    {
+        superficie1 = (dynamic_cast<Rectangle<int>&>(*this)).superficie();
+        superficie2 = (dynamic_cast<Polygone<int>&>(forme)).superficie();
     }
 
     return superficie1 == superficie2;
@@ -199,6 +333,16 @@ Forme<T>& Forme<T>::operator+(const int &degre){
             (dynamic_cast<Rectangle<int>&>(*this).getRectangle()).rotate(degre);
     }
 
+    if( typetest<Cercle<int>>(*this) ){
+             debug("surcharge +");
+            (dynamic_cast<Cercle<int>&>(*this).getCercle()).rotate(degre);
+    }
+
+    if( typetest<Polygone<int>>(*this) ){
+             debug("surcharge +");
+            (dynamic_cast<Polygone<int>&>(*this).getPolygone()).rotate(degre);
+    }
+
     return *this;
 }
 
@@ -207,6 +351,16 @@ Forme<T>& Forme<T>::operator-(const int &degre){
     if( typetest<Rectangle<int>>(*this) ){
              debug("surcharge -");
             (dynamic_cast<Rectangle<int>&>(*this).getRectangle()).rotate(360-degre);
+    }
+
+    if( typetest<Cercle<int>>(*this) ){
+             debug("surcharge -");
+            (dynamic_cast<Cercle<int>&>(*this).getCercle()).rotate(360-degre);
+    }
+
+    if( typetest<Polygone<int>>(*this) ){
+             debug("surcharge -");
+            (dynamic_cast<Polygone<int>&>(*this).getPolygone()).rotate(360-degre);
     }
     return *this;
 }
@@ -249,7 +403,6 @@ ostream& operator<<(ostream& os, Forme<T>& forme)
     os << " y = ";
     os << forme.position.y;
     os << " , ";
-
     // metriques
     // classe
     if ( isRECT )

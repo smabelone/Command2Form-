@@ -7,20 +7,20 @@ class Rectangle : public Forme<T>
 {
 public:
 
-    /* CONSTRUCTEURS */
+    /** CONSTRUCTEURS **/
     explicit Rectangle() = default;
     Rectangle(Color c, T epai, Color c_bor, Vector2f pos, T lo, T la);
     Rectangle(Color c, T epai, Color c_bor, T x, T y, T lo, T la);
     Rectangle(const Rectangle<T>& x);
     Rectangle(Rectangle<T>&& x);
 
-    /* DESTRUCTEUR */
+    /** DESTRUCTEUR **/
     ~Rectangle();
 
-    /* AFFICHAGE */
+    /** AFFICHAGE **/
     void operator>>(shared_ptr<sf::RenderWindow> &window);
 
-    /* SURCHARGE OPERATEURS */
+    /** SURCHARGE OPERATEURS **/
     Rectangle<T>& operator=(const Rectangle<T>& x);
     Rectangle<T>& operator=(Rectangle<T>&& x);
     void operator[](Color c);
@@ -28,12 +28,14 @@ public:
     Rectangle<T>& operator+(const sf::Vector2f &vect);
     Rectangle<T>& operator/(const int &scale);
 
-    /* METHODES */
+
+    /** METHODES **/
     T superficie() const;
     T perimetre() const;
     T getLongueur() const;
     T getLargeur() const;
     RectangleShape& getRectangle();
+    friend Rectangle<T> flushRectangle(Rectangle<T> rect);
 
 protected:
 

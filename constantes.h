@@ -48,17 +48,17 @@ using namespace sf;
 /*** COMMANDES **************/
 /*****************************/
 
-#define CREATE "create" // new
-#define UNSELECT "unselect" // operation
-#define CHANGE_COLOR "color" // << ou []
-#define MOVE "move" // +
-#define ROTATE "rotate" // %
-#define SCALEUP "scaleup" // *
-#define SCALEDOWN "scaledown" // *
-#define REMOVE "remove" // delete
+#define CREATE "create"
+#define UNSELECT "unselect"
+#define CHANGE_COLOR "color"
+#define MOVE "move"
+#define ROTATE "rotate"
+#define SCALEUP "scaleup"
+#define SCALEDOWN "scaledown"
+#define REMOVE "remove"
 #define CLEAR "removeall"
 #define CLS "cls"
-#define COPY "duplicate" // new --> +
+#define COPY "duplicate"
 #define DIST "dist"
 #define COLOR "color"
 #define LIST "list"
@@ -68,6 +68,7 @@ using namespace sf;
 #define CONTOUR "contour"
 #define SUPERFICIE "superficie"
 #define PERIMETRE "perimetre"
+#define FLUSH "flush"
 
 /*****************************/
 /*** MOTS CLES **************/
@@ -119,8 +120,9 @@ using namespace sf;
 /*** MESSAGES 1 ******************/
 /*****************************/
 
-#define START_MSG "Bienvenue !"
-#define EXIT_CMD "exit"
+#define START_MSG "Command2Form v1.0 by F. ALOUANE && S. BELHAMIDI"
+#define START_MSG_2 "-----------------------------------------------"
+#define EXIT_CMD "Au revoir !"
 
 #define COMMANDE_INCONNUE "Commande inconnue : "
 #define COULEUR_INCONNUE "Couleur inconnue : "
@@ -144,3 +146,4 @@ using namespace sf;
 #define SCALE_VALUE_INVALIDE "argument invalide, la valeur doit etre superieure a 0"
 #define NO_CONTOUR_BACKGROUNG_ARG "Le second argument doit avoir les valeurs "
 #define SYSTEM_ERROR "Erreur système irrecuperable"
+#define NOT_A_POLYGON "Un polygone doit aoir au moins 3 sommets"

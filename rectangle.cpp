@@ -151,3 +151,10 @@ sf::RectangleShape& Rectangle<T>::getRectangle()
 {
     return this->rectangle;
 }
+
+// pour tester le constructeur par deplacement
+template<typename T>
+Rectangle<T> flushRectangle(Rectangle<T> rect)
+{
+    return rect;
+}

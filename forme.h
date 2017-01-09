@@ -2,9 +2,11 @@
 
 #include "constantes.h"
 
+/** TEMPLATE DE CLASSE **/
 template <typename T>
 class Forme;
 
+/** SURCHARGE DE std::cout << Forme **/
 template <typename T>
 ostream& operator<<(ostream& os, Forme<T>& forme);
 
